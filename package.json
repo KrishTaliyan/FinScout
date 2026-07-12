@@ -1,0 +1,16 @@
+{
+  "name": "finscout",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FinScout - AI-powered investment research agent built with React, Express, LangChain.js, and Gemini.",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "build": "npm run build --prefix client",
+    "start": "npm run start --prefix server",
+    "test": "npm run test --prefix server",
+    "install:all": "npm install && npm install --prefix client && npm install --prefix server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

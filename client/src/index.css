@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-ink: 19 32 24;
+  --color-paper: 241 243 238;
+  --color-muted: 91 102 96;
+  --color-hairline: 216 220 209;
+}
+
+.dark {
+  --color-ink: 232 236 228;
+  --color-paper: 15 20 17;
+  --color-muted: 148 158 148;
+  --color-hairline: 46 55 46;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  background-color: rgb(var(--color-paper));
+  color: rgb(var(--color-ink));
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background-image:
+    linear-gradient(rgba(19, 32, 24, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(19, 32, 24, 0.05) 1px, transparent 1px);
+  background-size: 38px 38px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.05));
+}
+
+.dark body::before {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+@layer components {
+  .panel {
+    @apply rounded-sm border border-hairline shadow-soft;
+    background-color: rgba(255, 255, 255, 0.92);
+  }
+
+  .dark .panel {
+    background-color: rgba(23, 30, 24, 0.86);
+  }
+
+  .soft-panel {
+    @apply rounded-sm border border-hairline;
+    background-color: rgba(255, 255, 255, 0.82);
+  }
+
+  .dark .soft-panel {
+    background-color: rgba(23, 30, 24, 0.7);
+  }
+
+  .icon-button {
+    @apply inline-flex h-10 w-10 items-center justify-center rounded-sm border border-hairline bg-transparent text-ink transition hover:border-invest-600 hover:bg-invest-50 hover:text-invest-700 focus:outline-none focus:ring-2 focus:ring-invest-600/30;
+  }
+
+  .dark .icon-button:hover {
+    background-color: rgba(20, 107, 68, 0.12);
+  }
+
+  .stamp {
+    @apply inline-flex items-center justify-center rounded-sm px-4 py-2 font-mono text-lg font-bold uppercase tracking-[0.26em];
+    border: 3px double currentColor;
+    transform: rotate(-3deg);
+    background: rgba(255, 255, 255, 0.4);
+  }
+
+  .dark .stamp {
+    background: rgba(0, 0, 0, 0.25);
+  }
+}
+
+@keyframes softRise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spinSoft {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-soft-rise {
+  animation: softRise 480ms ease-out both;
+}
+
+.spinner {
+  animation: spinSoft 900ms linear infinite;
+}
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: #e4e8e0;
+}
+
+.dark .skeleton {
+  background: #232b23;
+}
+
+.skeleton::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+  transform: translateX(-100%);
+  animation: shimmer 1.4s infinite;
+}
+
+.dark .skeleton::after {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+}
+
+@media print {
+  body {
+    background: #ffffff;
+  }
+
+  body::before,
+  .no-print {
+    display: none !important;
+  }
+
+  .print-area {
+    box-shadow: none !important;
+    border: 0 !important;
+  }
+}
+
+

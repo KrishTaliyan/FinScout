@@ -1,0 +1,31 @@
+{
+  "name": "finscout-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Express and LangChain.js API for the FinScout investment research agent.",
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "dev:nodemon": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "test": "node --test tests/*.test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@langchain/core": "1.2.2",
+    "@langchain/google": "0.2.1",
+    "cors": "2.8.6",
+    "dotenv": "16.6.1",
+    "express": "4.22.2",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "nodemon": "3.1.14"
+  }
+}
+
+
+
+
